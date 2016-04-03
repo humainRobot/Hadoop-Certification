@@ -14,7 +14,6 @@ sqoop eval \
   --password cloudera \
   --query "select count(1) from order_items"
 
--- Basic import
 sqoop import \
   --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
   --username=cloudera \
@@ -22,10 +21,14 @@ sqoop import \
   --table departments \ #for example
   --target-dir /user/root/departments
   
-
+sqoop import-all-tables \
+  -m 12 \
+  --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
+  --username=cloudera \
+  --password=cloudera \
+  --warehouse-dir=/user/cloudera/sqoop_import
+  
 -- Reference: http://www.hadoop.com/content/hadoop/en/developers/home/developer-admin-resources/get-started-with-hadoop-tutorial/exercise-1.html
-
-
 
 sqoop import-all-tables \
   --num-mappers 1 \
