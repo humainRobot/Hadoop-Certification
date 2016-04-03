@@ -1,8 +1,37 @@
+sqoop list-databases \
+  --connect "jdbc:mysql://quickstart.cloudera:3306" \
+  --username cloudera \
+  --password cloudera
+
+sqoop list-tables \
+  --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
+  --username cloudera \
+  --password cloudera
+
+sqoop eval \
+  --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
+  --username cloudera \
+  --password cloudera \
+  --query "select count(1) from order_items"
+
+-- Basic import
+sqoop import \
+  --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
+  --username=cloudera \
+  --password=cloudera \
+  --table departments \ #for example
+  --target-dir /user/root/departments
+  
+
+-- Reference: http://www.hadoop.com/content/hadoop/en/developers/home/developer-admin-resources/get-started-with-hadoop-tutorial/exercise-1.html
+
+
+
 sqoop import-all-tables \
   --num-mappers 1 \
-  --connect "jdbc:mysql://sandbox.hortonworks.com:3306/retail_db" \
-  --username=retail_dba \
-  --password=hadoop \
+  --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
+  --username=cloudera \
+  --password=cloudera \
   --hive-import \
   --hive-overwrite \
   --create-hive-table \
