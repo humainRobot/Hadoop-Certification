@@ -1,0 +1,11 @@
+sqoop import-all-tables \
+  --num-mappers 1 \
+  --connect "jdbc:mysql://sandbox.hortonworks.com:3306/retail_db" \
+  --username=retail_dba \
+  --password=hadoop \
+  --hive-import \
+  --hive-overwrite \
+  --create-hive-table \
+  --compress \
+  --compression-codec org.apache.hadoop.io.compress.SnappyCodec \
+  --outdir java_files
