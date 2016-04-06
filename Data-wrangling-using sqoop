@@ -71,6 +71,6 @@ sqoop import \
   --lines-terminated-by '\n' \
   --hive-home /user/hive/warehouse \
   --hive-import \
-  --hive-table departments \
+  --hive-table sqoop_import.departments \  # Make sure sqoop_import database already exists !
   --hive-overwrite \
   --outdir java_files
