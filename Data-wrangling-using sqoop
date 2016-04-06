@@ -54,3 +54,20 @@ sqoop import \
   --target-dir /user/cloudera/order_join \
   --split-by order_id \
   --num-mappers 4
+
+# HIVE 
+# In this example, we assume that the department hive table already exists and we want to overwrite it.
+# Otherwise we could add --hive-create-table
+
+sqoop import \
+  --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
+  --username=retail_dba \
+  --password=cloudera \
+  --table departments \
+  --fields-terminated-by '|' \
+  --lines-terminated-by '\n' \
+  --hive-home /user/hive/warehouse \
+  --hive-import \
+  --hive-table departments \
+  --hive-overwrite \
+  --outdir java_files
