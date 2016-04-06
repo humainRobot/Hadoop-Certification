@@ -58,8 +58,9 @@ sqoop import \
 # HIVE 
 # In this example, we assume that the department hive table already exists and we want to overwrite it.
 # Otherwise we could add --hive-create-table
-# The command may fails if a directory with the same name as the Hive table exists, because sqoop stores data in a temporary 
-# directory, "The staging table", before copying data into Hive table. cloudera => /user/cloudera/depatment should not exists.
+# Sqoop stores data in a temporary directory called the staging table under the user's home directory : /user/cloudera
+# before copying data into Hive table. cloudera => /user/cloudera/depatment should not exists.
+# The temporary directory is removed after the job is done.
 
 sqoop import \
   --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
