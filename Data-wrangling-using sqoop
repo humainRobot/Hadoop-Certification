@@ -74,3 +74,17 @@ sqoop import \
   --hive-table sqoop_import.departments \  # Make sure sqoop_import database already exists !
   --hive-overwrite \
   --outdir java_files
+
+# Getting delta (--where) :  if there are new records in mysql database that need to be stored in HDFS.
+# --append option is used to avoid the failure (department folder already exists). 
+# N+1 is the index of the first new record to be stored in HDFS.
+
+sqoop import \
+  --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
+  --username=retail_dba \
+  --password=cloudera \
+  --table departments \
+  --target-dir /user/cloudera/sqoop_import/departments \
+  --append \
+  --where "department_id > N" \ 
+  --outdir java_files
