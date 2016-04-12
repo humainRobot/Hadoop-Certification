@@ -21,14 +21,14 @@ sqoop eval \
 sqoop import-all-tables \
   -m 12 \
   --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
-  --username=cloudera \
+  --username=retail_dba \
   --password=cloudera \
   --warehouse-dir=/user/cloudera/sqoop_import
   
 sqoop import-all-tables \
   --num-mappers 1 \
   --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
-  --username=cloudera \
+  --username=retail_dba \
   --password=cloudera \
   --hive-import \
   --hive-overwrite \
@@ -40,7 +40,7 @@ sqoop import-all-tables \
   
 sqoop import \
   --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
-  --username=cloudera \
+  --username=retail_dba \
   --password=cloudera \
   --table departments \
   --target-dir /user/root/departments
