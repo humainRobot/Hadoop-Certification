@@ -25,19 +25,6 @@ sqoop import-all-tables \
   --password=cloudera \
   --warehouse-dir=/user/cloudera/sqoop_import
   
-sqoop import-all-tables \
-  --num-mappers 1 \
-  --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
-  --username=retail_dba \
-  --password=cloudera \
-  --hive-import \
-  --hive-overwrite \
-  --hive-database "sqoop_import_test" #You can choose the database tou want
-  --create-hive-table \
-  --compress \
-  --compression-codec org.apache.hadoop.io.compress.SnappyCodec \
-  --outdir java_files
-  
 sqoop import \
   --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
   --username=retail_dba \
@@ -62,6 +49,18 @@ sqoop import \
 # before copying data into Hive table. cloudera => /user/cloudera/depatment should not exists.
 # The temporary directory is removed after the job is done.
 
+sqoop import-all-tables \
+  --num-mappers 1 \
+  --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
+  --username=retail_dba \
+  --password=cloudera \
+  --hive-import \
+  --hive-overwrite \
+  --hive-database "sqoop_import_test" #You can choose the database tou want
+  --compress \
+  --compression-codec org.apache.hadoop.io.compress.SnappyCodec \
+  --outdir java_files
+  
 sqoop import 
   --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" 
   --username retail_dba 
