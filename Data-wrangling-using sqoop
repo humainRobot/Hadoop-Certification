@@ -62,17 +62,16 @@ sqoop import \
 # before copying data into Hive table. cloudera => /user/cloudera/depatment should not exists.
 # The temporary directory is removed after the job is done.
 
-sqoop import \
-  --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
-  --username=retail_dba \
-  --password=cloudera \
-  --table departments \
-  --fields-terminated-by '|' \
-  --lines-terminated-by '\n' \
-  --hive-home /user/hive/warehouse \
-  --hive-import \
-  --hive-table sqoop_import.departments \  # Make sure sqoop_import database already exists !
-  --hive-overwrite \
+sqoop import 
+  --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" 
+  --username retail_dba 
+  --password cloudera 
+  --table=departments 
+  --hive-home=/user/hive/warehouse 
+  --hive-import 
+  --hive-overwrite 
+  --create-hive-table 
+  --hive-table=sqoop_import.departments
   --outdir java_files
 
 # Getting delta (--where) :  if there are new records in mysql database that need to be stored in HDFS.
