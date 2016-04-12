@@ -4,17 +4,17 @@ https://sqoop.apache.org/docs/1.4.2/SqoopUserGuide.html
 
 sqoop list-databases \
   --connect "jdbc:mysql://quickstart.cloudera:3306" \
-  --username cloudera \
+  --username retail_dba \
   --password cloudera
 
 sqoop list-tables \
   --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
-  --username cloudera \
+  --username retail_dba \
   --password cloudera
 
 sqoop eval \
   --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
-  --username cloudera \
+  --username retail_dba \
   --password cloudera \
   --query "select count(1) from order_items"
 
