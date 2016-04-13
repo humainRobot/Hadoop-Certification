@@ -31,7 +31,7 @@ sqoop import \
   --table departments \
   --target-dir /user/root/departments
 
--- query and split-by
+# Query and split-by
 sqoop import \
   --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
   --username=retail_dba \
