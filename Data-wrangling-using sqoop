@@ -108,3 +108,19 @@ sqoop export --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
 
 #To update rows : --update-key {primary_key}
 #To insert while updating : --update-mode allowinsert
+
+sqoop job --create sqoop_job \
+  -- import \
+  --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
+  --username=retail_dba \
+  --table departments \
+  --target-dir /user/cloudera/hadoop_certif/sqoop_import/departments \
+  --fields-terminated-by '|' \
+  --lines-terminated-by '\n' \
+  --outdir java_files
+
+sqoop job --list
+
+sqoop job --show sqoop_job
+
+sqoop job --exec sqoop_job
