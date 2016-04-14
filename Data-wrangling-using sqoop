@@ -101,3 +101,6 @@ sqoop export --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
   --num-mappers 2 \
   --batch \
   --outdir java_files
+
+#To update rows : --update-key {primary_key}
+#To insert while updating : --update-mode allowinsert
