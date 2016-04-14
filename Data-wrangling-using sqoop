@@ -31,14 +31,18 @@ sqoop import \
   --table departments \
   --target-dir /user/cloudera/hadoop_certif/sqoop_import/retail.db/departments
 
-# Query and split-by
+#If we want to change the character that seperates fields and the one seperating lines :
+  --fields-terminated-by '|' \
+  --lines-terminated-by '\n' \
+
+# Import query result
 sqoop import \
   --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
   --username=retail_dba \
   --password=cloudera \
   --query="select * from orders join order_items on orders.order_id = order_items.order_item_order_id where \$CONDITIONS" \
   --target-dir /user/cloudera/hadoop_certif/sqoop_import/retail.db/order_join \
-  --split-by order_id \
+  --split-by order_id \ # We must specify the column with the index (Primary, foreign)
   --num-mappers 4
 
 # HIVE 
