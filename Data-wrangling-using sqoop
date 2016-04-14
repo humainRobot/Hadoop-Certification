@@ -85,3 +85,19 @@ sqoop import \
   --append \
   --where "department_id > N" \ 
   --outdir java_files
+
+#Export data
+
+mysql>> use retail_db;
+mysql>> create table departments_export as select * from departments where 1=2;
+
+hadoop fs -cp /user/cloudera/hadoop_certif/sqoop_import/retail.db/departments /user/cloudera/hadoop_certif/sqoop_export
+
+sqoop export --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
+  --username retail_dba \
+  --password cloudera \
+  --table departments \
+  --export-dir /user/cloudera/hadoop_certif/sqoop_export/departments \
+  --num-mappers 2 \
+  --batch \
+  --outdir java_files
