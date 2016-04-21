@@ -1,7 +1,5 @@
-# When running spark-shell after spark download, the system will consider the local file system
-# If we want to access the HDFS we have to copy the files in the conf folder under /etc/spark 
-# into the directory of the new spark.
+spark-shell
 
-#spark-shell
+scala> sc.textFile("/user/cloudera/hadoop_certif/sqoop_import/retail.db/departments").collect().foreach(println)
 
 scala> sqlContext.sql(query).collect().foreach(println)
