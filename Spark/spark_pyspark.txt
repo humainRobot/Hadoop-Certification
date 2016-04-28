@@ -1,0 +1,11 @@
+
+# Use the commande "pyspark" to start spark using python
+
+# Load data from HDFS and storing results back to HDFS using Spark
+from pyspark import SparkContext
+
+dataRDD = sc.textFile("/user/cloudera/hadoop_certif/sqoop_import/retail.db/departments")
+for line in dataRDD.collect():
+    print(line)
+
+data.saveAsTextFile("/user/cloudera/hadoop_certif/spark/pyspark/departments")
