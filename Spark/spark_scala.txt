@@ -1,5 +1,5 @@
 spark-shell
 
-scala> sc.textFile("/user/cloudera/hadoop_certif/sqoop_import/retail.db/departments").collect().foreach(println)
+sc.textFile("/user/cloudera/hadoop_certif/sqoop_import/retail.db/departments").collect().foreach(println)
 
-scala> sqlContext.sql(query).collect().foreach(println)
+sqlContext.sql(query).collect().foreach(println)
