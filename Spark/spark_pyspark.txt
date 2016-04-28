@@ -1,7 +1,14 @@
-# Use the commande "pyspark" to start spark using python
+pyspark --driver-class-path /usr/share/java/mysql-connector-java.jar
+
+jdbcurl = "jdbc:mysql://quickstart.cloudera:3306/retail_db?user=retail_dba&password=cloudera"
+df = sqlContext.load(source="jdbc", url=jdbcurl, dbtable="departments")
+
+for line in df.collect():
+    print(line)
+  
+___________||||||||___________
 
 # Load data from HDFS and storing results back to HDFS using Spark
-from pyspark import SparkContext
 
 dataRDD = sc.textFile("/user/cloudera/hadoop_certif/sqoop_import/retail.db/departments")
 for line in dataRDD.collect():
