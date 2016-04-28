@@ -7,11 +7,11 @@ for line in df.collect():
     print(line)
   
 ___________||||||||___________
-
-# Load data from HDFS and storing results back to HDFS using Spark
+### Load data from HDFS and storing results back to HDFS using Spark
 
 dataRDD = sc.textFile("/user/cloudera/hadoop_certif/sqoop_import/retail.db/departments")
 for line in dataRDD.collect():
     print(line)
 
 data.saveAsTextFile("/user/cloudera/hadoop_certif/spark/pyspark/departments")
+___________||||||||___________
