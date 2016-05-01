@@ -1,3 +1,6 @@
+# The SparkContext & SparkConf are not available by default when submitting spark application.
+# The import is required.
+
 from pyspark import SparkContext, SparkConf
 
 conf = SparkConf().setAppName("pyspark")
