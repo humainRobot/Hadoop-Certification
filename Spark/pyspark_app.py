@@ -10,8 +10,5 @@ for line in dataRDD.collect():
 dataRDD.saveAsTextFile("/user/cloudera/pyspark/departmentsTesting")
 
 #Run using this command
-#master local will run in spark native mode
-spark-submit --master local pyspark_app.py
-
-#master yarn will run in yarn mode
-spark-submit --master yarn pyspark_app.py
+#master local will run in spark native mode : spark-submit --master local pyspark_app.py
+#master yarn will run in yarn mode : spark-submit --master yarn pyspark_app.py
