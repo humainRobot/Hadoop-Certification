@@ -5,11 +5,10 @@ from pyspark import SparkContext, SparkConf
 
 conf = SparkConf().setAppName("pyspark")
 sc = SparkContext(conf=conf)
-dataRDD = sc.textFile("/user/cloudera/sqoop_import/retail.db/departments")
+dataRDD = sc.textFile("/user/cloudera/sqoop_import/departments")
 for line in dataRDD.collect():
     print(line)
-
-dataRDD.saveAsTextFile("/user/cloudera/pyspark/departmentsTesting")
+dataRDD.saveAsTextFile("/user/cloudera/spark/pyspark/departmentsTesting"))
 
 #Run using this command
 #master local will run in spark native mode : spark-submit --master local pyspark_app.py
