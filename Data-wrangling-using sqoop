@@ -22,14 +22,14 @@ sqoop import-all-tables \
   --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
   --username=retail_dba \
   --password=cloudera \
-  --warehouse-dir=/user/cloudera/hadoop_certif/sqoop_import
+  --warehouse-dir=/user/cloudera/sqoop_import
   
 sqoop import \
   --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
   --username=retail_dba \
   --password=cloudera \
   --table departments \
-  --target-dir /user/cloudera/hadoop_certif/sqoop_import/retail.db/departments
+  --target-dir /user/cloudera/sqoop_import/retail.db/departments
 
 #If we want to change the character that seperates fields and the one seperating lines :
   --fields-terminated-by '|' \
@@ -41,7 +41,7 @@ sqoop import \
   --username=retail_dba \
   --password=cloudera \
   --query="select * from orders join order_items on orders.order_id = order_items.order_item_order_id where \$CONDITIONS" \
-  --target-dir /user/cloudera/hadoop_certif/sqoop_import/retail.db/order_join \
+  --target-dir /user/cloudera/sqoop_import/retail.db/order_join \
   --split-by order_id \ # We must specify the column with the index (Primary, foreign)
   --num-mappers 4
 
@@ -85,7 +85,7 @@ sqoop import \
   --username=retail_dba \
   --password=cloudera \
   --table departments \
-  --target-dir /user/cloudera/hadoop_certif/sqoop_import/retail.db/departments \
+  --target-dir /user/cloudera/sqoop_import/retail.db/departments \
   --append \
   --where "department_id > N" \ 
   --outdir java_files
@@ -95,13 +95,13 @@ sqoop import \
 mysql>> use retail_db;
 mysql>> create table departments_export as select * from departments where 1=2;
 
-hadoop fs -cp /user/cloudera/hadoop_certif/sqoop_import/retail.db/departments /user/cloudera/hadoop_certif/sqoop_export
+hadoop fs -cp /user/cloudera/sqoop_import/retail.db/departments /user/cloudera/sqoop_export
 
 sqoop export --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
   --username retail_dba \
   --password cloudera \
   --table departments \
-  --export-dir /user/cloudera/hadoop_certif/sqoop_export/departments \
+  --export-dir /user/cloudera/sqoop_export/departments \
   --num-mappers 2 \
   --batch \
   --outdir java_files
@@ -114,7 +114,7 @@ sqoop job --create sqoop_job \
   --connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
   --username=retail_dba \
   --table departments \
-  --target-dir /user/cloudera/hadoop_certif/sqoop_import/departments \
+  --target-dir /user/cloudera/sqoop_import/departments \
   --fields-terminated-by '|' \
   --lines-terminated-by '\n' \
   --outdir java_files
