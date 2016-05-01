@@ -1,4 +1,3 @@
-
 from pyspark import SparkContext, SparkConf
 
 conf = SparkConf().setAppName("pyspark")
